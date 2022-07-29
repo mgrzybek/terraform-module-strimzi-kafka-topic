@@ -26,7 +26,7 @@ resource "kubernetes_manifest" "topic-consumer" {
       "labels" = {
         "strimzi.io/cluster" = var.cluster
       }
-      "name"      = "${name}-consumer"
+      "name"      = "${var.name}-consumer"
       "namespace" = var.namespace
     }
     "spec" = {
@@ -39,7 +39,7 @@ resource "kubernetes_manifest" "topic-consumer" {
             "host"      = "*"
             "operation" = "Read"
             "resource" = {
-              "name"        = "${name}"
+              "name"        = "${var.name}"
               "patternType" = "literal"
               "type"        = "topic"
             }
@@ -48,7 +48,7 @@ resource "kubernetes_manifest" "topic-consumer" {
             "host"      = "*"
             "operation" = "Describe"
             "resource" = {
-              "name"        = "${name}"
+              "name"        = "${var.name}"
               "patternType" = "literal"
               "type"        = "topic"
             }
@@ -70,7 +70,7 @@ resource "kubernetes_manifest" "topic-producer" {
       "labels" = {
         "strimzi.io/cluster" = var.cluster
       }
-      "name"      = "${name}-producer"
+      "name"      = "${var.name}-producer"
       "namespace" = var.namespace
     }
     "spec" = {
@@ -83,7 +83,7 @@ resource "kubernetes_manifest" "topic-producer" {
             "host"      = "*"
             "operation" = "Write"
             "resource" = {
-              "name"        = "${name}"
+              "name"        = "${var.name}"
               "patternType" = "literal"
               "type"        = "topic"
             }
@@ -92,7 +92,7 @@ resource "kubernetes_manifest" "topic-producer" {
             "host"      = "*"
             "operation" = "Describe"
             "resource" = {
-              "name"        = "${name}"
+              "name"        = "${var.name}"
               "patternType" = "literal"
               "type"        = "topic"
             }
